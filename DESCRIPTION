@@ -1,6 +1,6 @@
 Package: refitME
 Title: Measurement Error Modelling using MCEM
-Version: 1.2.1
+Version: 1.2.2
 Authors@R: 
   c(person(given = "Jakub",
            family = "Stoklosa",
@@ -22,10 +22,10 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2021-06-28 05:08:02 UTC; z3409479
+Packaged: 2021-08-03 06:41:42 UTC; jakubstoklosa
 Author: Jakub Stoklosa [aut, cre] (<https://orcid.org/0000-0002-6523-4524>),
   Wenhan Hwang [aut, ctb],
   David Warton [aut, ctb]
 Maintainer: Jakub Stoklosa <j.stoklosa@unsw.edu.au>
 Repository: CRAN
-Date/Publication: 2021-06-28 05:20:02 UTC
+Date/Publication: 2021-08-03 10:10:02 UTC

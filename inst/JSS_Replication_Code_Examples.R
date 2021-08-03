@@ -16,7 +16,7 @@ data(Framinghamdata)
 
 glm_naiv <- glm(Y ~ w1 + z1 + z2 + z3, x = TRUE, family = binomial, data = Framinghamdata)
 
-sigma.sq.u <- 0.01259/2 # Measurement error variance, obtained from Carroll et al. (2006) monograph.
+sigma.sq.u <- 0.006295 # Measurement error variance, obtained from Carroll et al. (2006) monograph.
 
 rel.rat <- (1 - sigma.sq.u/var(Framinghamdata$w1))*100
 

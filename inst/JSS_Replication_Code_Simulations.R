@@ -16,7 +16,7 @@ set.seed(2019)
 
 B <- 50
 
-n <- 1000
+n <- 10000
 
 dim_vec <- c(1:10)
 
@@ -141,20 +141,20 @@ dats2 <- as.data.frame(cbind((dim_vec), (eff_vec2), (1/dim_vec)))
 colnames(dats1) = colnames(dats2) = c("dim_vec", "ESS", "dim_inv")
 
 p1 <- ggplot(dats1, aes(x = dim_vec, y = ESS)) + geom_point() + geom_line(size = 1) +
-  geom_line(aes(x = dim_vec, y = dim_inv), color = "red", linetype = "dotted", colour ="ESS/B") +
+  geom_line(aes(x = dim_vec, y = dim_inv), color = "red", linetype = "dotted", colour ="ESS/B", size = 2) +
   labs(x = bquote("p"), y = bquote("ESS/B"), title = "Gaussian response") +
   theme(axis.title.y = element_text(size = 20, angle = 90), text = element_text(size = 20),
         axis.text = element_text(size = 20), axis.title = element_text(size = 20, face = "bold")) +
-  scale_y_continuous(trans="log", breaks = trans_breaks("log", function(x) round(exp(x), digits = 2))) +
-  scale_x_continuous(trans="log", breaks = trans_breaks("log", function(x) round(exp(x), digits = 0)))
+  scale_y_continuous(trans = "log", breaks = trans_breaks("log", function(x) round(exp(x), digits = 2))) +
+  scale_x_continuous(trans = "log", breaks = trans_breaks("log", function(x) round(exp(x), digits = 0)))
 
 p2 <- ggplot(dats2, aes(x = dim_vec, y = ESS)) + geom_point() + geom_line(size = 1) +
-  geom_line(aes(x = dim_vec, y = dim_inv), color = "red", linetype = "dotted") +
+  geom_line(aes(x = dim_vec, y = dim_inv), color = "red", linetype = "dotted", size = 2) +
   labs(x = bquote("p"), y = bquote("ESS/B"), title = "Binary response") +
   theme(axis.title.y = element_text(size = 20, angle = 90), legend.title = element_blank(), text = element_text(size = 20),
         legend.position = "none", axis.text = element_text(size = 20), axis.title = element_text(size = 20, face = "bold")) +
-  scale_y_continuous(trans="log", breaks = trans_breaks("log", function(x) round(exp(x), digits = 2))) +
-  scale_x_continuous(trans="log", breaks = trans_breaks("log", function(x) round(exp(x), digits = 0)))
+  scale_y_continuous(trans = "log", breaks = trans_breaks("log", function(x) round(exp(x), digits = 2))) +
+  scale_x_continuous(trans = "log", breaks = trans_breaks("log", function(x) round(exp(x), digits = 0)))
 
 multiplot(p1, p2, layout = matrix(c(1, 2), ncol = 2, nrow = 1, byrow = T))
 
@@ -171,7 +171,7 @@ set.seed(2019)
 
 B <- 50
 
-n <- 1000
+n <- 10000
 
 sigma.sq.u_vec <- c(seq(0.1, 1, 0.1))
 
