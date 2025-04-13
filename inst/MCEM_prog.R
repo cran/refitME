@@ -54,12 +54,12 @@ est.cs <- function(betain, y, w1, tau, sigma.sq.u) {
 
   eta <- betain[1] + betain[2]*Delta
 
-  expt1 <- exp(outer(eta, YK, "*") - 0.5*betain[2]^2*sigma.sq.u*matrix(YK^2, D1, tau, byrow = T))
-  expt2 <- matrix(choose(tau, YK), D1, tau, byrow = T)*expt1
+  expt1 <- exp(outer(eta, YK, "*") - 0.5*betain[2]^2*sigma.sq.u*matrix(YK^2, D1, tau, byrow = TRUE))
+  expt2 <- matrix(choose(tau, YK), D1, tau, byrow = TRUE)*expt1
 
   normc <- apply(expt2, 1, sum)
   PY.CD <- expt2/normc
-  EY.CD <- apply(matrix(YK, D1, tau, byrow = T)*PY.CD, 1, sum, na.rm = T)
+  EY.CD <- apply(matrix(YK, D1, tau, byrow = TRUE)*PY.CD, 1, sum, na.rm = TRUE)
 
   score.0 <- cbind(rep(1, D1), Delta)*(c(y - EY.CD))
 
@@ -89,8 +89,8 @@ N.CS.est <- function(beta.est, y, w1, tau, sigma.sq.u) {
 
   eta <- beta.est[1] + beta.est[2]*Delta
 
-  expt1 <- exp(outer(eta, YK, "*") - 0.5*beta.est[2]^2*sigma.sq.u*matrix(YK^2, D1, tau, byrow = T))
-  expt2 <- matrix(choose(tau, YK), D1, tau, byrow = T)*expt1
+  expt1 <- exp(outer(eta, YK, "*") - 0.5*beta.est[2]^2*sigma.sq.u*matrix(YK^2, D1, tau, byrow = TRUE))
+  expt2 <- matrix(choose(tau, YK), D1, tau, byrow = TRUE)*expt1
 
   normc <- apply(expt2, 1, sum)
 
@@ -109,12 +109,12 @@ est.cs2 <- function(betain, y, w1, tau, sigma.sq.u) {
 
   eta <- betain[1] + betain[2]*Delta
 
-  expt1 <- exp(outer(eta, YK, "*") - 0.5*betain[2]^2*sigma.sq.u*matrix(YK^2, D1, tau, byrow = T))
-  expt2 <- matrix(choose(tau, YK), D1, tau, byrow = T)*expt1
+  expt1 <- exp(outer(eta, YK, "*") - 0.5*betain[2]^2*sigma.sq.u*matrix(YK^2, D1, tau, byrow = TRUE))
+  expt2 <- matrix(choose(tau, YK), D1, tau, byrow = TRUE)*expt1
 
   normc <- apply(expt2, 1, sum)
   PY.CD <- expt2/normc
-  EY.CD <- apply(matrix(YK, D1, tau, byrow = T)*PY.CD, 1, sum, na.rm = T)
+  EY.CD <- apply(matrix(YK, D1, tau, byrow = TRUE)*PY.CD, 1, sum, na.rm = TRUE)
 
   score.0 <- cbind(rep(1, D1), Delta)*(c(y - EY.CD))
 
@@ -131,12 +131,12 @@ est.cs3 <- function(betain, y, w1, tau, sigma.sq.u) {
 
   eta <- betain[1] + betain[2]*Delta
 
-  expt1 <- exp(outer(eta, YK, "*") - 0.5*betain[2]^2*sigma.sq.u*matrix(YK^2, D1, tau, byrow = T))
-  expt2 <- matrix(choose(tau, YK), D1, tau, byrow = T)*expt1
+  expt1 <- exp(outer(eta, YK, "*") - 0.5*betain[2]^2*sigma.sq.u*matrix(YK^2, D1, tau, byrow = TRUE))
+  expt2 <- matrix(choose(tau, YK), D1, tau, byrow = TRUE)*expt1
 
   normc <- apply(expt2, 1, sum)
   PY.CD <- expt2/normc
-  EY.CD <- apply(matrix(YK, D1, tau, byrow = T)*PY.CD, 1, sum, na.rm = T)
+  EY.CD <- apply(matrix(YK, D1, tau, byrow = TRUE)*PY.CD, 1, sum, na.rm = TRUE)
 
   score.0 <- cbind(rep(1, D1), Delta)*(c(y - EY.CD))
 
@@ -153,8 +153,8 @@ var.CS <- function(beta.est, y, w1, tau, sigma.sq.u) {
 
   eta <- beta.est[1] + beta.est[2]*Delta
 
-  expt1 <- exp(outer(eta, YK, "*") - 0.5*beta.est[2]^2*sigma.sq.u*matrix(YK^2, D1, tau, byrow = T))
-  expt2 <- matrix(choose(tau, YK), D1, tau, byrow = T)*expt1
+  expt1 <- exp(outer(eta, YK, "*") - 0.5*beta.est[2]^2*sigma.sq.u*matrix(YK^2, D1, tau, byrow = TRUE))
+  expt2 <- matrix(choose(tau, YK), D1, tau, byrow = TRUE)*expt1
 
   normc <- apply(expt2, 1, sum)
 
@@ -202,7 +202,7 @@ predict_B_glm <- function(mod, datTest, sigma.sq.uTest, B, eta_true = NA) {
 
   etaPred <- as.matrix(X)%*%coef(mod)
 
-  RMSE <- sqrt(mean((rep(eta_true, B) - etaPred)^2, na.rm = T))
+  RMSE <- sqrt(mean((rep(eta_true, B) - etaPred)^2, na.rm = TRUE))
 
   values <- list(RMSE = RMSE)
 
@@ -223,7 +223,7 @@ predict_B_gam <- function(mod, datTest, sigma.sq.uTest, B, eta_true = NA) {
 
   etaPred <- predict(mod, newdata = datTest_new, type = "link")
 
-  RMSE <- sqrt(mean((rep(eta_true, B) - etaPred)^2, na.rm = T))
+  RMSE <- sqrt(mean((rep(eta_true, B) - etaPred)^2, na.rm = TRUE))
 
   values <- list(RMSE = RMSE)
 
@@ -289,7 +289,7 @@ cov.pc <- function(true, est, esd, N.sim) {
   count <- rep(0, p)
 
   for(i in 1:p) {
-    count[i] <- length(which(((est[, i] - 1.96*esd[, i]) < true[i] & true[i] < (est[, i] + 1.96*esd[, i])) == T))/N.sim
+    count[i] <- length(which(((est[, i] - 1.96*esd[, i]) < true[i] & true[i] < (est[, i] + 1.96*esd[, i])) == TRUE))/N.sim
   }
 
   count
@@ -298,7 +298,7 @@ cov.pc <- function(true, est, esd, N.sim) {
 # A coverage probability and interval score function.
 
 cov.pc_N <- function(true, est, esd, N.sim) {
-  count1 <- length(which(((est - 1.96*esd) < true & true < (est + 1.96*esd)) == T))/N.sim
+  count1 <- length(which(((est - 1.96*esd) < true & true < (est + 1.96*esd)) == TRUE))/N.sim
 
   list(cp = count1)
 }

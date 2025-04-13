@@ -1,11 +1,12 @@
 #------------------------------------------------------------------------------
-# JSS_Replication_Code_Examples.R
+# Replication_Code_Examples.R
 #
-# This file reproduces all the results (Tables 1-2, Figure 3-4 and 10-11) for
-# Examples 1 to 4 of Section 4 and Appendix B of the manuscript.
+# This file reproduces all the results (Tables 1-2, Figures 3-4 and Web Figures
+# 8-9) for Examples 1 to 4 of Section 4 and Appendix B of the manuscript.
 #------------------------------------------------------------------------------
 
-# Example 1: A simple GLM example taken from Carroll et al. (2006) - The Framingham heart study data set.
+# Example 1: A simple GLM example taken from Carroll et al. (2006) - The
+# Framingham heart study data set.
 
 library(refitME)
 library(simex)
@@ -71,19 +72,19 @@ summary(glm_MCEM)
 anova(glm_naiv)
 anova(glm_MCEM)
 
-#----------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
-# Example 2: A GAM example taken from Ganguli et al. (2005) - The air pollution data set.
+# Example 2: A GAM example taken from Ganguli et al. (2005) - The air pollution
+# data set.
 
 library(refitME)
-library(SemiPar)
 library(mgcv)
 
 set.seed(2020)
 
-data(milan.mort)
+data(Milanmortdata)
 
-dat.air <- milan.mort
+dat.air <- Milanmortdata
 
 Y <- dat.air[, 6]
 
@@ -125,7 +126,7 @@ for(i in 1:4) {
   if (i == 1) {
     plot(gam_MCEM, select = i, ylim = c(-0.35, 0.1), xlim = range(plot_gam_naiv[[1]]$x), rug = FALSE, col = "blue", all.terms = TRUE,
          xlab = xlab.names[i], ylab = "s(Mortality counts)", lwd = 2, cex.lab = 1.3, cex.axis = 1.3,
-         cex.main = 2, font.lab = 1.1, cex = 1.4, shade = T)
+         cex.main = 2, font.lab = 1.1, cex = 1.4, shade = TRUE)
     lines(plot_gam_naiv[[1]]$x, plot_gam_naiv[[1]]$fit, type= "l", col = "red", lwd = 2, lty = 2)
     title(main = bquote("Reliability ratio of predictor is" ~ .(rel.rat) ~ "%"), outer = F, line = 1, cex = 1.4)
     legend("bottomright", c("Naive GAM", "MCEM GAM"), col = c("red", "blue"), lty = c(2, 1), lwd = 2, bty = "n")
@@ -136,7 +137,7 @@ for(i in 1:4) {
   if (i == 2) {
     plot(gam_MCEM, select = i, ylim = c(-0.25, 0.3), rug = FALSE, col = "blue", all.terms = TRUE,
          xlab = xlab.names[i], ylab = "s(Mortality counts)", lwd = 2, cex.lab = 1.3, cex.axis = 1.3,
-         cex.main = 2, font.lab = 1.1, cex = 1.4, shade = T)
+         cex.main = 2, font.lab = 1.1, cex = 1.4, shade = TRUE)
     lines(plot_gam_naiv[[2]]$x, plot_gam_naiv[[2]]$fit, type= "l", col = "red", lwd = 2, lty = 2)
     for(j in 1:2) {
       axis(j, labels = FALSE)
@@ -145,7 +146,7 @@ for(i in 1:4) {
   if (i == 3) {
     plot(gam_MCEM, select = i, ylim = c(-0.2, 0.4), rug = FALSE, col = "blue", all.terms = TRUE,
          xlab = xlab.names[i], ylab = "s(Mortality counts)", lwd = 2, cex.lab = 1.3, cex.axis = 1.3,
-         cex.main = 2, font.lab = 1.1, cex = 1.4, shade = T)
+         cex.main = 2, font.lab = 1.1, cex = 1.4, shade = TRUE)
     lines(plot_gam_naiv[[3]]$x, plot_gam_naiv[[3]]$fit, type= "l", col = "red", lwd = 2, lty = 2)
     for(j in 1:2) {
       axis(j, labels = FALSE)
@@ -154,7 +155,7 @@ for(i in 1:4) {
   if (i == 4) {
     plot(gam_MCEM, select = i, ylim = c(-0.06, 0.08), rug = FALSE, col = "blue", all.terms = TRUE,
          xlab = xlab.names[i], ylab = "s(Mortality counts)", lwd = 2, cex.lab = 1.1, cex.axis = 1.1,
-         cex.main = 2, font.lab = 1.1, cex = 1.4, shade = T)
+         cex.main = 2, font.lab = 1.1, cex = 1.4, shade = TRUE)
     lines(plot_gam_naiv[[4]]$x, plot_gam_naiv[[4]]$fit, type= "l", col = "red", lwd = 2, lty = 2)
     for(j in 1:2) {
       axis(j, labels = FALSE)
@@ -168,9 +169,10 @@ par(op)
 
 detach(package:mgcv)
 
-#----------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 
-# Example 3: A Point Process model (PPM) example using Corymbia eximia presence-only data.
+# Example 3: A Point Process model (PPM) example using Corymbia eximia
+# presence-only data.
 
 library(refitME)
 library(caret)

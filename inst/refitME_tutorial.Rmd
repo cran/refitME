@@ -97,20 +97,19 @@ comp.time  # SIMEX and MCEM.
 
 ## Example 2: A GAM example taken from Ganguli _et al._ (2005).
 
-The Milan mortality air pollution data set is part of the `SemiPar` package. Here, we fit GAM models via the `mgcv` package where one predictor (daily total suspended particles measurements) is error-contaminated.
+The Milan mortality air pollution data set was part of the `SemiPar` package. With permission from Matt Wand, we have now made these data available in the `refitME` `R`-package. In this example, we fit GAM models via the `mgcv` package where one predictor (daily total suspended particles measurements) is error-contaminated.
 
 ### Load data and `R`-packages.
 
 ```{r, echo=TRUE}
 suppressWarnings(suppressMessages(library(refitME)))
 suppressWarnings(suppressMessages(library(dplyr)))
-suppressWarnings(suppressMessages(library(SemiPar)))
 suppressWarnings(suppressMessages(library(mgcv)))
 
 set.seed(2021)
 
-data(milan.mort)
-dat.air <- sample_n(milan.mort, 100) # Take a random sample of 100.
+data(Milanmortdata)
+dat.air <- sample_n(Milanmortdata, 100) # Take a random sample of 100.
 ``` 
 
 ### Setup all variables.

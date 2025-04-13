@@ -4,7 +4,7 @@
 \alias{MCEMfit_gam}
 \title{Function for wrapping the MCEM algorithm on \code{gam} objects}
 \source{
-See \url{https://github.com/JakubStats/refitME} for an RMarkdown vignette with examples.
+See \url{https://github.com/JakubStats/refitME} for an RMarkdown vignette with examples. With permission from Matt Wand, we have now made these data available in the refitME R-package.
 }
 \usage{
 MCEMfit_gam(
@@ -42,13 +42,12 @@ Function for wrapping the MCEM algorithm on GAMs where predictors are subject to
 # A GAM example using the air pollution data set from the SemiPar package.
 
 library(refitME)
-library(SemiPar)
 library(mgcv)
 library(dplyr)
 
-data(milan.mort)
+data(Milanmortdata)
 
-dat.air <- sample_n(milan.mort, 100) # Takes a random sample of size 100.
+dat.air <- sample_n(Milanmortdata, 100) # Takes a random sample of size 100.
 
 Y <- dat.air[, 6]  # Mortality counts.
 
@@ -76,8 +75,6 @@ detach(package:mgcv)
 }
 \references{
 Ganguli, B, Staudenmayer, J., and Wand, M. P. (2005). Additive models with predictors subject to measurement error. \emph{Australian & New Zealand Journal of Statistics}, \strong{47}, 193–202.
-
-Wand, M. P. (2018). \pkg{SemiPar}: Semiparametic Regression. \proglang{R} package version 1.0-4.2., URL \url{https://CRAN.R-project.org/package=SemiPar}.
 
 Stoklosa, J., Hwang, W-H., and Warton, D.I. \pkg{refitME}: Measurement Error Modelling using Monte Carlo Expectation Maximization in \proglang{R}.
 }
